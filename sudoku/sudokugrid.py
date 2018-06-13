@@ -66,16 +66,15 @@ class SudokuGrid():
                 return False
         return True
 
-    @property
     def rows_in_grid_have_unique_values(self, grid=None):
         """Return True if all rows have unique values from 1 to n or empty spaces."""
         if grid is None:
             grid = self.grid
 
         for row in range(len(grid)):
-            value_counts = {0 for value in range(1, self._n + 1)}
+            value_counts = {value:0 for value in range(1, self._n + 1)}
             for column in range(len(grid[row])):
-                if self.grid[row][column] > 0:
+                if grid[row][column] > 0:
                     value_counts[grid[row][column]] += 1
             # Once we have counted, check for repeated values
             for value in value_counts.keys():
@@ -83,7 +82,6 @@ class SudokuGrid():
                     return False
         return True
 
-    @property
     def columns_in_grid_have_unique_values(self):
         """
         Return True if all columns have unique values from 1 to n or empty spaces.
@@ -112,5 +110,6 @@ class SudokuGrid():
 
         if not self.columns_in_grid_have_unique_values:
             return False
+        return True
 
         # TODO: Rercursively find out if all subgrids also are valid grids

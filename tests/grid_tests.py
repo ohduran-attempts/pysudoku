@@ -38,6 +38,13 @@ class TestSudokuGrid(unittest.TestCase):
         with self.assertRaises(Exception):
             g = sudokugrid.SudokuGrid(grid='string')
 
+    def test_valid_grid_passes_valid_grid_test(self):
+        """Test that is_valid_grid returns True for a valid grid."""
+        grid = [[2, 0, 3], [1, 0, 0], [0, 0, 1]]
+        g = sudokugrid.SudokuGrid(grid=grid)
+
+        self.assertTrue(g.is_valid_grid)
+
 
 
 
