@@ -1,1 +1,0 @@
-#!environment/bin/python3
