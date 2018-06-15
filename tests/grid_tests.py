@@ -46,7 +46,5 @@ class TestSudokuGrid(unittest.TestCase):
         self.assertTrue(g.is_valid_grid)
 
 
-
-
 if __name__ == '__main__':
     unittest.main()

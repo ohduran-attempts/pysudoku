@@ -12,7 +12,7 @@ class SudokuGrid():
             self.grid = grid
             self._n = len(grid)
         elif grid is None and n is not None:
-            self.grid = self.random_grid_generation(n)
+            self.grid = self._random_grid_generation(n)
             self._n = n
 
         else:
@@ -22,7 +22,7 @@ class SudokuGrid():
     def dimension(self):
         return self._n
 
-    def random_grid_generation(self, n):
+    def _random_grid_generation(self, n):
         """When grid is not input, self generate a sudoku of dimension=n."""
         grid3 = [
             [2, 0, 3],
@@ -110,6 +110,25 @@ class SudokuGrid():
 
         if not self.columns_in_grid_have_unique_values:
             return False
-        return True
 
         # TODO: Rercursively find out if all subgrids also are valid grids
+
+        def is_divisor(n, i):
+            """Return True if n % i == 0"""
+            return n % i == 0
+
+        def greatest_divisor(number):
+            """Return the greatest divisor of a number"""
+            if is_divisor(number, 2):
+                return number // 2
+            else:
+                for i in range(3, number, 2):
+                    if is_divisor(number, i):
+                        return number // i
+
+        # Define each subgrid based on the greatest divisor
+        gd = greatest_divisor(self._n)
+
+
+        # If everything passed, return True
+        return True
